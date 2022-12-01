@@ -44,7 +44,7 @@ sequelize
     console.log('database berhasil disambungkan');
     // starting server and
     const PORT = process.env.PORT || 5000;
-    app.listen(PORT, console.log(`server running in ${process.env.NODE_ENV} mode port ${PORT}`));
+    app.listen(PORT, console.log(`server running  ${process.env.NODE_ENV} mode port ${PORT}`));
   })
   .catch((err) => {
     console.log(err);
