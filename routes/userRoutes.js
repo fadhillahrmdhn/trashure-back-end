@@ -10,7 +10,6 @@ const {
 } = require('../controllers/userController');
 
 router.route('/').get(getAllUsers);
-router.route('/edit/:id').put(updateUser);
-router.route('/:id').get(getUser).delete(deleteUser);
+router.route('/:id').get(getUser).delete(deleteUser).put(updateUser);
 
 module.exports = router;
