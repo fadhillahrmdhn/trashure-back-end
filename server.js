@@ -38,6 +38,7 @@ app.use('/organik', organikRoutes);
 app.use('/tips', tipsRoutes);
 
 // check in database
+console.log('coba"');
 sequelize
   .authenticate()
   .then(() => {
