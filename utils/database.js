@@ -6,7 +6,7 @@ const { DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD } = process.env;
 const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
   dialect: 'mysql',
   host: 'containers-us-west-77.railway.app',
-  port: 6845,
+  port: 3306,
   timezone: '+07:00',
 });
 
