@@ -2,6 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -14,6 +15,9 @@ require('./models/userModel');
 require('./models/index');
 
 const app = express();
+
+// use cors
+app.use(cors());
 
 // To parse cookies from the HTTP Request
 app.use(bodyParser.urlencoded({ extended: true }));
