@@ -85,14 +85,21 @@ module.exports = {
           message: 'user tidak ditemukan',
         });
       }
-      getHashedPassword(req.body.password);
-      await user.update(req.body);
 
-      res.status(200).json({
-        succes: true,
-        message: 'data user berhasil diperbaharui',
-        data: user,
-      });
+      if (req.body.password) {
+        await user.update(req.body.password);
+        res.status(200).json({
+          succes: true,
+          message: 'data user berhasil diperbaharui',
+          data: user,
+        });
+      } else {
+        await user.update(req.body);
+        res.status(200).json({
+          succes: true,
+          message: 'password berhasil diperbaharui',
+        });
+      }
     } catch (err) {
       res.status(400).json({
         succes: false,
@@ -100,6 +107,32 @@ module.exports = {
       });
     }
   },
+  // @desc update password user
+  // async updatePwUser(req, res) {
+  //   try {
+  //     const user = await User.findByPk(req.params.id);
+
+  //     if (!user) {
+  //       return res.status(404).json({
+  //         succes: false,
+  //         message: 'user tidak ditemukan',
+  //       });
+  //     }
+
+  //     await user.update(getHashedPassword(req.body.password));
+
+  //     res.status(200).json({
+  //       succes: true,
+  //       message: 'password user berhasil diperbaharui',
+  //       data: user,
+  //     });
+  //   } catch (err) {
+  //     res.status(400).json({
+  //       succes: false,
+  //       message: err.message,
+  //     });
+  //   }
+  // },
   // @desc memhapus data user
   async deleteUser(req, res) {
     try {
