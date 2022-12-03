@@ -91,6 +91,7 @@ module.exports = {
         res.status(200).json({
           succes: true,
           message: 'data user berhasil diperbaharui',
+          data: user,
         });
       } else {
         await user.update(req.body);
