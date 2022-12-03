@@ -86,7 +86,7 @@ module.exports = {
         });
       }
 
-      if (req.body.password) {
+      if (!req.body.password) {
         await user.update(req.body);
         res.status(200).json({
           succes: true,
