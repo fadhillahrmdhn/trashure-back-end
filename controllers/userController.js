@@ -86,12 +86,20 @@ module.exports = {
         });
       }
 
-      await user.update(req.body);
+      const hashedPassword = getHashedPassword(req.body.password);
+      const userUpdate = await User.update({
+        name: req.body.name,
+        password: hashedPassword,
+        email: req.body.email,
+        number: req.body.number,
+        nik: req.body.nik,
+        alamat: req.body.alamat,
+      });
 
       res.status(200).json({
         succes: true,
         message: 'data user berhasil diperbaharui',
-        data: user,
+        data: userUpdate,
       });
     } catch (err) {
       res.status(400).json({
