@@ -94,7 +94,9 @@ module.exports = {
           data: user,
         });
       } else {
-        await user.update(getHashedPassword(req.body.password));
+        await user.update({
+          password: getHashedPassword(req.body.password),
+        });
         res.status(200).json({
           succes: true,
           message: 'password berhasil diperbaharui',
