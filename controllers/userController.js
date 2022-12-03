@@ -87,7 +87,7 @@ module.exports = {
       }
 
       if (req.body.password) {
-        await user.update(req.body.password);
+        await user.update(getHashedPassword(req.body.password));
         res.status(200).json({
           succes: true,
           message: 'data user berhasil diperbaharui',
