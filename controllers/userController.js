@@ -86,14 +86,7 @@ module.exports = {
         });
       }
 
-      if (!req.body.password) {
-        await user.update(req.body);
-        res.status(200).json({
-          succes: true,
-          message: 'data user berhasil diperbaharui',
-          data: user,
-        });
-      } else {
+      if (req.body.password) {
         await user.update({
           password: getHashedPassword(req.body.password),
         });
@@ -103,6 +96,13 @@ module.exports = {
           data: user,
         });
       }
+
+      await user.update(req.body);
+      res.status(200).json({
+        succes: true,
+        message: 'data user berhasil diperbaharui',
+        data: user,
+      });
     } catch (err) {
       res.status(400).json({
         succes: false,
