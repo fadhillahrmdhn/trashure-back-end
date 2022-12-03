@@ -86,21 +86,21 @@ module.exports = {
         });
       }
 
-      if (req.body.password) {
-        await user.update({
-          password: getHashedPassword(req.body.password),
-        });
+      if (!req.body.password) {
+        await user.update(req.body);
         res.status(200).json({
           succes: true,
-          message: 'password berhasil diperbaharui',
+          message: 'data user berhasil diperbaharui',
           data: user,
         });
       }
 
-      await user.update(req.body);
+      await user.update({
+        password: getHashedPassword(req.body.password),
+      });
       res.status(200).json({
         succes: true,
-        message: 'data user berhasil diperbaharui',
+        message: 'password berhasil diperbaharui',
         data: user,
       });
     } catch (err) {
