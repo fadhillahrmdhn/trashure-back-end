@@ -18,7 +18,7 @@ const Tips = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    image: {
+    imageDetail: {
       type: DataTypes.STRING,
       allowNull: true,
     },
