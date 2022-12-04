@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const {
   getAllTips,
   createTips,
@@ -9,7 +10,18 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getAllTips).post(createTips);
+// upload foto
+const storage = multer.diskStorage({
+  destination(reg, file, cb) {
+    cb(null, 'images');
+  },
+  filename(req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage }).single('imageDetail');
+
+router.route('/').get(getAllTips).post(upload, createTips);
 
 router.route('/:id').get(getTips).put(editTips).delete(deleteTips);
 
