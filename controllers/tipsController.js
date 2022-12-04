@@ -24,7 +24,11 @@ getAllTips = async (req, res, next) => {
 // @access  PUBLIC
 createTips = async (req, res, next) => {
   try {
-    const tips = await model.tips.create(req.body);
+    const tips = await model.organik.create({
+      title: req.body.title,
+      descDetail: req.body.descDetail,
+      image: req.file.path,
+    });
     res.status(200).json({
       success: true,
       message: 'Data tips berhasil dibuat',
