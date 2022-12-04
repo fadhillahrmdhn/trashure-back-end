@@ -111,8 +111,7 @@ editOrganik = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: `Data Organik ID: ${req.params.id} berhasil diperbarui`,
-      data: organik,
+      message: `image Organik ID: ${req.params.id} berhasil diperbarui`,
     });
   } catch (error) {
     res.status(400).json({
