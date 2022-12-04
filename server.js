@@ -4,6 +4,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+const path = require('path');
 const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -25,6 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parsing body request
 app.use(express.json());
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // upload foto
 const storage = multer.diskStorage({
