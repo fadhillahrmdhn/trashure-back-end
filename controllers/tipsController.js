@@ -27,7 +27,7 @@ createTips = async (req, res, next) => {
     const tips = await model.tips.create({
       title: req.body.title,
       descDetail: req.body.descDetail,
-      imageDetail: req.file.path,
+      image: req.file.path,
       AnorganikId: req.body.AnorganikId,
       OrganikId: req.body.OrganikId,
     });
