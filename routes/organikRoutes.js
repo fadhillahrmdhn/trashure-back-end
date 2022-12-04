@@ -23,6 +23,6 @@ const upload = multer({ storage }).single('image');
 
 router.route('/').get(getAllOrganiks).post(upload, createOrganik);
 
-router.route('/:id').get(getOrganik).put(editOrganik).delete(deleteOrganik);
+router.route('/:id').get(getOrganik).put(upload, editOrganik).delete(deleteOrganik);
 
 module.exports = router;
