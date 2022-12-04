@@ -24,7 +24,7 @@ getAllTips = async (req, res, next) => {
 // @access  PUBLIC
 createTips = async (req, res, next) => {
   try {
-    const tips = await model.organik.create({
+    const tips = await model.tips.create({
       title: req.body.title,
       descDetail: req.body.descDetail,
       image: req.file.path,
