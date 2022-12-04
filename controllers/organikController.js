@@ -105,7 +105,7 @@ editOrganik = async (req, res, next) => {
       }
     }
 
-    await model.organik.update({
+    await organik.update({
       image: req.file.path,
     });
 

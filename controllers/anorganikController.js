@@ -99,7 +99,7 @@ editAnorganik = async (req, res, next) => {
       }
     }
 
-    await model.anorganik.update({
+    await anorganik.update({
       image: req.file.path,
     });
 

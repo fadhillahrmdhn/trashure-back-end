@@ -77,7 +77,26 @@ editTips = async (req, res, next) => {
       });
     }
 
-    await tips.update(req.body);
+    if (!req.body.imageDetail) {
+      await tips.update(req.body);
+      try {
+        res.status(200).json({
+          succes: true,
+          message: 'data user berhasil diperbaharui',
+          data: tips,
+        });
+      } catch (err) {
+        res.status(400).json({
+          succes: false,
+          message: err.message,
+        });
+      }
+    }
+
+    await tips.update({
+      imageDetail: req.file.path,
+    });
+
     res.status(200).json({
       success: true,
       message: `Data tips ID: ${req.params.id} berhasil diperbarui`,
