@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
   },
 });
 
-app.use(multer({ storage }).single('image'));
+app.use(multer({ storage }).single('image', 'imageDetail'));
 
 // routing
 app.use('/register', registerRoutes);
