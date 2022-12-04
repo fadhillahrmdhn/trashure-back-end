@@ -23,6 +23,6 @@ const upload = multer({ storage }).single('image');
 
 router.route('/').get(getAllAnorganiks).post(upload, createAnorganik);
 
-router.route('/:id').get(getAnorganik).put(editAnorganik).delete(deleteAnorganik);
+router.route('/:id').get(getAnorganik).put(upload, editAnorganik).delete(deleteAnorganik);
 
 module.exports = router;

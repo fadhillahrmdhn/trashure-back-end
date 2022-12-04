@@ -23,6 +23,6 @@ const upload = multer({ storage }).single('imageDetail');
 
 router.route('/').get(getAllTips).post(upload, createTips);
 
-router.route('/:id').get(getTips).put(editTips).delete(deleteTips);
+router.route('/:id').get(getTips).put(upload, editTips).delete(deleteTips);
 
 module.exports = router;
