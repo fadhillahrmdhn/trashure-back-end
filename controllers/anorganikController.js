@@ -24,10 +24,15 @@ getAllAnorganiks = async (req, res, next) => {
 // @access  PUBLIC
 createAnorganik = async (req, res, next) => {
   try {
-    const anorganik = await model.anorganik.create(req.body);
+    const anorganik = await model.anorganik.create({
+      name: req.body.name,
+      description: req.body.description,
+      image: req.file.path,
+      video: req.body.video,
+    });
     res.status(200).json({
-      status: 'true',
-      message: 'Berhasil membuat data Anorganik',
+      success: true,
+      message: 'Data organik berhasil dibuat',
       data: anorganik,
     });
   } catch (error) {
@@ -77,7 +82,27 @@ editAnorganik = async (req, res, next) => {
         message: `Gagal memperbarui data anorganik ID: ${req.params.id}`,
       });
     }
-    await anorganik.update(req.body);
+
+    if (!req.body.image) {
+      await anorganik.update(req.body);
+      try {
+        res.status(200).json({
+          succes: true,
+          message: 'data user berhasil diperbaharui',
+          data: anorganik,
+        });
+      } catch (err) {
+        res.status(400).json({
+          succes: false,
+          message: err.message,
+        });
+      }
+    }
+
+    await model.anorganik.update({
+      image: req.file.path,
+    });
+
     res.status(200).json({
       success: true,
       message: `Berhasil memperbarui data anorganik ID: ${req.params.id}`,
