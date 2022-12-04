@@ -19,9 +19,9 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage });
+const upload = multer({ storage }).single('imageDetail');
 
-router.route('/').get(getAllTips).post(upload.single('imageDetail'), createTips);
+router.route('/').get(getAllTips).post(upload, createTips);
 
 router.route('/:id').get(getTips).put(editTips).delete(deleteTips);
 

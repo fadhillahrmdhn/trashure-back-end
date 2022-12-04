@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const {
   getAllOrganiks,
   createOrganik,
@@ -9,7 +10,18 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getAllOrganiks).post(createOrganik);
+// upload foto
+const storage = multer.diskStorage({
+  destination(reg, file, cb) {
+    cb(null, 'images');
+  },
+  filename(req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage }).single('imageDetail');
+
+router.route('/').get(getAllOrganiks).post(upload, createOrganik);
 
 router.route('/:id').get(getOrganik).put(editOrganik).delete(deleteOrganik);
 
