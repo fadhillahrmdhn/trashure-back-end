@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage }).single('imageDetail');
+const upload = multer({ storage }).single('image');
 
 router.route('/').get(getAllOrganiks).post(upload, createOrganik);
 
