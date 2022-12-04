@@ -1,5 +1,4 @@
 const express = require('express');
-const multer = require('multer');
 const {
   getAllOrganiks,
   createOrganik,
@@ -8,20 +7,9 @@ const {
   deleteOrganik,
 } = require('../controllers/organikController');
 
-const storage = multer.diskStorage({
-  destination(reg, file, cb) {
-    cb(null, 'images');
-  },
-  filename(req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage }).single('image');
-
 const router = express.Router();
 
-router.route('/').get(getAllOrganiks).post(upload, createOrganik);
+router.route('/').get(getAllOrganiks).post(createOrganik);
 
 router.route('/:id').get(getOrganik).put(editOrganik).delete(deleteOrganik);
 

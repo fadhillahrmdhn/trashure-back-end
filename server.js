@@ -3,7 +3,7 @@ const express = require('express');
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const multer = require('multer');
+const multer = require('multer');
 const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -26,17 +26,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parsing body request
 app.use(express.json());
 
-// // upload foto
-// const storage = multer.diskStorage({
-//   destination(reg, file, cb) {
-//     cb(null, 'images');
-//   },
-//   filename(req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
+// upload foto
+const storage = multer.diskStorage({
+  destination(reg, file, cb) {
+    cb(null, 'images');
+  },
+  filename(req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
-// app.use(multer({ storage }).single('image'));
+app.use(multer({ storage }).single('image'));
 
 // routing
 app.use('/register', registerRoutes);
