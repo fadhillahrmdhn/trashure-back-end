@@ -28,6 +28,8 @@ createTips = async (req, res, next) => {
       title: req.body.title,
       descDetail: req.body.descDetail,
       image: req.file.path,
+      AnorganikId: req.body.AnorganikId,
+      OrganikId: req.body.OrganikId,
     });
     res.status(200).json({
       success: true,
