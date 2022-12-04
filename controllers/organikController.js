@@ -24,7 +24,12 @@ getAllOrganiks = async (req, res, next) => {
 // @access  PUBLIC
 createOrganik = async (req, res, next) => {
   try {
-    const organik = await model.organik.create(req.body);
+    const organik = await model.organik.create({
+      name: req.body.name,
+      description: req.body.description,
+      image: req.file.path,
+      video: req.body.video,
+    });
     res.status(200).json({
       success: true,
       message: 'Data organik berhasil dibuat',
@@ -84,7 +89,26 @@ editOrganik = async (req, res, next) => {
       });
     }
 
-    await organik.update(req.body);
+    if (!req.body.image) {
+      await organik.update(req.body);
+      try {
+        res.status(200).json({
+          succes: true,
+          message: 'data user berhasil diperbaharui',
+          data: organik,
+        });
+      } catch (err) {
+        res.status(400).json({
+          succes: false,
+          message: err.message,
+        });
+      }
+    }
+
+    await model.organik.update({
+      image: req.file.path,
+    });
+
     res.status(200).json({
       success: true,
       message: `Data Organik ID: ${req.params.id} berhasil diperbarui`,
