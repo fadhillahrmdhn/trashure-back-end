@@ -1,5 +1,7 @@
 const express = require('express');
 const multer = require('multer');
+
+const router = express.Router();
 const {
   getAllOrganiks,
   createOrganik,
@@ -7,8 +9,6 @@ const {
   editOrganik,
   deleteOrganik,
 } = require('../controllers/organikController');
-
-const router = express.Router();
 
 // upload foto
 const storage = multer.diskStorage({
