@@ -99,14 +99,13 @@ editAnorganik = async (req, res, next) => {
       }
     }
 
-    await anorganik.path({
+    await anorganik.update({
       image: req.file.path,
     });
 
     res.status(200).json({
       success: true,
       message: `Berhasil memperbarui data anorganik ID: ${req.params.id}`,
-      data: anorganik,
     });
   } catch (error) {
     res.status(400).json({
